@@ -102,7 +102,7 @@
             userDiv.innerHTML = userMessage;
             chatBody.appendChild(userDiv);
 
-            // Simulando resposta do chatbot (pode ser substituído por uma requisição real a uma API de chatbot)
+            // Simulando resposta do chatbot
             var botResponse = getBotResponse(userMessage);
             var botDiv = document.createElement('div');
             botDiv.className = 'chat-message bot-message';
@@ -118,9 +118,20 @@
 
         // Simulação de resposta do chatbot
         function getBotResponse(message) {
-            // Aqui você pode adicionar a lógica do chatbot para responder às mensagens do usuário
-            // Por simplicidade, aqui vamos apenas retornar uma resposta fixa
-            return "Desculpe, ainda estou aprendendo. Por favor, me faça outra pergunta.";
+            var response = "";
+            message = message.toLowerCase();
+
+            if (message.includes("olá") || message.includes("oi")) {
+                response = "Olá! Como posso ajudar?";
+            } else if (message.includes("como você está?")) {
+                response = "Estou bem, obrigado por perguntar!";
+            } else if (message.includes("qual é o seu nome?")) {
+                response = "Meu nome é Chatbot de IA.";
+            } else {
+                response = "Desculpe, ainda estou aprendendo. Por favor, me faça outra pergunta.";
+            }
+
+            return response;
         }
     </script>
 </body>
