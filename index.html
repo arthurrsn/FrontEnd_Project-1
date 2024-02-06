@@ -85,6 +85,43 @@
             padding: 5px 10px;
             border-radius: 5px;
         }
+        .popup {
+            background-color: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0s 0.3s;
+        }
+        .popup.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s;
+        }
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .close-btn i {
+            font-size: 24px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -117,46 +154,32 @@
         <i class="icon fas fa-lightbulb"></i>
         <p>O futuro da IA é promissor, com previsões de avanços significativos em áreas como aprendizado de máquina, visão computacional, processamento de linguagem natural e robótica. No entanto, é importante considerar os desafios e garantir que a IA seja desenvolvida e utilizada de forma ética e responsável.</p>
         <p class="highlight">Junte-se à revolução da IA!</p>
+        <button onclick="openPopup()">Cadastre-se</button>
     </section>
     <footer>
         <p>&copy; 2024 Evolução da Inteligência Artificial</p>
     </footer>
 
-    <script>
-        // Função para adicionar classe 'active' quando uma seção estiver visível na tela
-        function checkScroll() {
-            const sections = document.querySelectorAll('section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()"><i class="fas fa-times"></i></span>
+            <h2>Cadastre-se</h2>
+            <form>
+                <input type="text" placeholder="Nome">
+                <input type="email" placeholder="Email">
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
 
-                if (sectionTop < windowHeight * 0.75) {
-                    section.classList.add('active');
-                } else {
-                    section.classList.remove('active');
-                }
-            });
+    <script>
+        function openPopup() {
+            document.getElementById('popup').classList.add('active');
         }
 
-        // Função para rolar suavemente para as seções ao clicar nos links da barra de navegação
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                window.scrollTo({
-                    top: target.offsetTop - document.querySelector('nav').offsetHeight,
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Adicionar evento de scroll para verificar quando uma seção está visível
-        window.addEventListener('scroll', checkScroll);
-        window.addEventListener('resize', checkScroll);
-
-        // Verificar a visibilidade das seções ao carregar a página
-        window.addEventListener('load', checkScroll);
+        function closePopup() {
+            document.getElementById('popup').classList.remove('active');
+        }
     </script>
 </body>
 </html>
