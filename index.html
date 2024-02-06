@@ -3,182 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evolução da IA</title>
+    <title>Chatbot de Inteligência Artificial</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        header {
+        .chat-container {
+            width: 400px;
+            height: 500px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-header {
             background-color: #333;
             color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .chat-body {
+            flex-grow: 1;
             padding: 20px;
-            text-align: center;
-            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
         }
-        h1 {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .chat-message {
+            margin-bottom: 15px;
         }
-        nav {
-            background-color: #444;
-            padding: 10px;
-            text-align: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+        .user-message {
+            background-color: #efefef;
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 70%;
+            align-self: flex-start;
         }
-        nav a {
+        .bot-message {
+            background-color: #007bff;
             color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 70%;
+            align-self: flex-end;
         }
-        nav a:hover {
-            color: #ff7f0e;
-        }
-        section {
-            padding: 50px 20px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        section.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        section h2 {
-            color: #333;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-        section p {
-            color: #666;
-            font-size: 18px;
-            line-height: 1.6;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
-        }
-        footer p {
-            font-size: 14px;
-        }
-        .icon {
-            font-size: 36px;
-            margin-bottom: 10px;
-            color: #ff7f0e;
-        }
-        .highlight {
-            background-color: #ff7f0e;
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-        .popup {
-            background-color: rgba(0, 0, 0, 0.7);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .chat-footer {
+            padding: 10px 20px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0s 0.3s;
         }
-        .popup.active {
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.3s;
-        }
-        .popup-content {
-            background-color: #fff;
-            padding: 20px;
+        .input-message {
+            flex-grow: 1;
+            padding: 8px;
+            border: none;
             border-radius: 5px;
-            text-align: center;
-            position: relative;
+            margin-right: 10px;
         }
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
+        .send-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
             cursor: pointer;
-        }
-        .close-btn i {
-            font-size: 24px;
-            color: #333;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Evolução da Inteligência Artificial</h1>
-    </header>
-    <nav>
-        <a href="#o-que-e-ia">O que é IA</a>
-        <a href="#historia">História</a>
-        <a href="#impactos">Impactos</a>
-        <a href="#futuro">Futuro</a>
-    </nav>
-    <section id="o-que-e-ia">
-        <h2>O que é Inteligência Artificial?</h2>
-        <i class="icon fas fa-robot"></i>
-        <p>A Inteligência Artificial (IA) é a capacidade das máquinas de realizar tarefas que normalmente exigiriam inteligência humana. Isso inclui aprendizado, raciocínio, reconhecimento de padrões e tomada de decisões.</p>
-    </section>
-    <section id="historia">
-        <h2>História da IA</h2>
-        <i class="icon fas fa-history"></i>
-        <p>A história da IA remonta às décadas de 1950 e 1960, com os primeiros estudos sobre redes neurais e programas de computador capazes de imitar a inteligência humana de forma limitada. Desde então, houve avanços significativos em algoritmos, hardware e aplicativos práticos de IA.</p>
-    </section>
-    <section id="impactos">
-        <h2>Impactos da IA</h2>
-        <i class="icon fas fa-globe"></i>
-        <p>A IA tem impactado diversas áreas da sociedade, incluindo indústria, medicina, transporte, entretenimento e muito mais. Ela promete melhorar a eficiência, a precisão e a qualidade de vida, mas também levanta questões éticas e sociais sobre privacidade, desemprego e segurança.</p>
-    </section>
-    <section id="futuro">
-        <h2>O Futuro da IA</h2>
-        <i class="icon fas fa-lightbulb"></i>
-        <p>O futuro da IA é promissor, com previsões de avanços significativos em áreas como aprendizado de máquina, visão computacional, processamento de linguagem natural e robótica. No entanto, é importante considerar os desafios e garantir que a IA seja desenvolvida e utilizada de forma ética e responsável.</p>
-        <p class="highlight">Junte-se à revolução da IA!</p>
-        <button onclick="openPopup()">Cadastre-se</button>
-    </section>
-    <footer>
-        <p>&copy; 2024 Evolução da Inteligência Artificial</p>
-    </footer>
-
-    <div class="popup" id="popup">
-        <div class="popup-content">
-            <span class="close-btn" onclick="closePopup()"><i class="fas fa-times"></i></span>
-            <h2>Cadastre-se</h2>
-            <form>
-                <input type="text" placeholder="Nome">
-                <input type="email" placeholder="Email">
-                <button type="submit">Cadastrar</button>
-            </form>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chatbot de IA</h2>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="bot-message">Olá! Como posso ajudar?</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" class="input-message" id="userMessage" placeholder="Digite sua mensagem...">
+            <button class="send-btn" onclick="sendMessage()">Enviar</button>
         </div>
     </div>
 
     <script>
-        function openPopup() {
-            document.getElementById('popup').classList.add('active');
+        function sendMessage() {
+            var userMessage = document.getElementById('userMessage').value;
+            if (userMessage.trim() === '') return;
+
+            var chatBody = document.getElementById('chatBody');
+            var userDiv = document.createElement('div');
+            userDiv.className = 'chat-message user-message';
+            userDiv.innerHTML = userMessage;
+            chatBody.appendChild(userDiv);
+
+            // Simulando resposta do chatbot (pode ser substituído por uma requisição real a uma API de chatbot)
+            var botResponse = getBotResponse(userMessage);
+            var botDiv = document.createElement('div');
+            botDiv.className = 'chat-message bot-message';
+            botDiv.innerHTML = botResponse;
+            chatBody.appendChild(botDiv);
+
+            // Scroll automático para a última mensagem
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Limpar campo de entrada de mensagem
+            document.getElementById('userMessage').value = '';
         }
 
-        function closePopup() {
-            document.getElementById('popup').classList.remove('active');
+        // Simulação de resposta do chatbot
+        function getBotResponse(message) {
+            // Aqui você pode adicionar a lógica do chatbot para responder às mensagens do usuário
+            // Por simplicidade, aqui vamos apenas retornar uma resposta fixa
+            return "Desculpe, ainda estou aprendendo. Por favor, me faça outra pergunta.";
         }
     </script>
 </body>
